@@ -10,14 +10,10 @@ var _type = function _type() {
 
 // Scalar operations
 var _sadd2 = function _sadd2(c, s) {
-    return c.map(function (n) {
-        return n + s;
-    });
+    return [c[0] + s, c[1]];
 };
 var _ssubtract2 = function _ssubtract2(c, s) {
-    return c.map(function (n) {
-        return n - s;
-    });
+    return [c[0] - s, c[1]];
 };
 var _smultiply2 = function _smultiply2(c, s) {
     return c.map(function (n) {

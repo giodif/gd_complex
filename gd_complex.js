@@ -2,8 +2,8 @@
 const _type       = () => "Complex Number"
 
 // Scalar operations
-const _sadd       = (c, s) => c.map( n => n + s )
-const _ssubtract  = (c, s) => c.map( n => n - s )  
+const _sadd       = (c, s) => [ c[ 0 ] + s, c[ 1 ] ]
+const _ssubtract  = (c, s) => [ c[ 0 ] - s, c[ 1 ] ]
 const _smultiply  = (c, s) => c.map( n => n * s )
 const _sdivide    = (c, s) => c.map( n => n / s )
 
