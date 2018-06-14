@@ -1,10 +1,10 @@
 {
   "name": "complex",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Complex Number Arithmetic",
   "main": "complex.js",
   "watch": {
-    "start" : "{index,gd_complex}.js"
+    "start": "{index,gd_complex}.js"
   },
   "scripts": {
     "build": "babel gd_complex.js -o gd_complex.es5.js",
