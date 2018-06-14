@@ -1,5 +1,5 @@
 {
-  "name": "complex",
+  "name": "gd_complex",
   "version": "0.0.2",
   "description": "Complex Number Arithmetic",
   "main": "complex.js",
