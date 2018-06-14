@@ -58,9 +58,9 @@ export const complex = ( real = 0, imaginary = 0 ) => {
         clone : () => complex( _n[ 0 ], _n[ 1 ] ),
 
         // return scalars, NO CHAINING
-        sqrLength  : () => _sqrLength( n ),
-        length     : () => _length( n ),
-        area       : () => _area( n ),
+        sqrLength  : () => _sqrLength( _n ),
+        length     : () => _length( _n ),
+        area       : () => _area( _n ),
 
         // MUTATORS
         _sadd : s => { 

@@ -118,13 +118,13 @@ var _complex = exports._complex = {
 
         // return scalars, NO CHAINING
         sqrLength: function sqrLength() {
-            return _sqrLength(n);
+            return _sqrLength(_n);
         },
         length: function length() {
-            return _length(n);
+            return _length(_n);
         },
         area: function area() {
-            return _area(n);
+            return _area(_n);
         },
 
         // MUTATORS
