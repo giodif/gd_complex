@@ -3,17 +3,30 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+var C = Math.PI * 2;
+
 // Returns type for convenience
 var _type = function _type() {
     return "Complex Number";
 };
 
+var _r = function _r(c) {
+    return c[0];
+};
+var _i = function _i(c) {
+    return c[1];
+};
+
+var _angle = function _angle(x, y) {
+    return Math.atan2(y, x) + (y < 0 ? C : 0);
+};
+
 // Scalar operations
 var _sadd2 = function _sadd2(c, s) {
-    return [c[0] + s, c[1]];
+    return [_r(c) + s, _i(c)];
 };
 var _ssubtract2 = function _ssubtract2(c, s) {
-    return [c[0] - s, c[1]];
+    return [_r(c) - s, _i(c)];
 };
 var _smultiply2 = function _smultiply2(c, s) {
     return c.map(function (n) {
@@ -38,7 +51,7 @@ var _isubtract2 = function _isubtract2(c, k) {
     });
 };
 var _imultiply2 = function _imultiply2(c, k) {
-    return [c[0] * k[0] - c[1] * k[1], c[0] * k[1] + c[1] * k[0]];
+    return [_r(c) * _r(k) - _i(c) * _i(k), _r(c) * _i(k) + _i(c) * _r(k)];
 };
 var _idivide2 = function _idivide2(c, k) {
     return _sdivide2(_imultiply2(c, _conjugate2(k)), _sqrLength(k));
@@ -46,7 +59,7 @@ var _idivide2 = function _idivide2(c, k) {
 
 // Useful Complex operations
 var _conjugate2 = function _conjugate2(c) {
-    return [c[0], -c[1]];
+    return [_r(c), -_i(c)];
 };
 var _sqrLength = function _sqrLength(c) {
     return c.map(function (n) {
@@ -65,7 +78,7 @@ var _normalize2 = function _normalize2(c) {
     return _sdivide2(c, _length(c));
 };
 var _area = function _area(c) {
-    return c[0] * c[1];
+    return _r(c) * _i(c);
 };
 
 // export all of the operations
@@ -74,6 +87,7 @@ var _area = function _area(c) {
 // and can be nested for multiple operations
 var _complex = exports._complex = {
     type: _type,
+    angle: _angle,
     sadd: _sadd2,
     ssubtract: _ssubtract2,
     smultiply: _smultiply2,
@@ -87,7 +101,9 @@ var _complex = exports._complex = {
     length: _length,
     reciprocal: _reciprocal2,
     normalize: _normalize2,
-    area: _area
+    area: _area,
+    re: _r,
+    im: _i
 
     // function to return "instances"
     // the functions are set up to allow chaining operations
@@ -101,29 +117,7 @@ var _complex = exports._complex = {
     var _n = [real, imaginary];
 
     var ops = {
-        value: function value() {
-            return _n;
-        },
-        type: function type() {
-            return _type();
-        },
-        // Make a new complex, use this if you want to chain without mutation
-        clone: function clone() {
-            return complex(_n[0], _n[1]);
-        },
-
-        // return scalars, NO CHAINING
-        sqrLength: function sqrLength() {
-            return _sqrLength(_n);
-        },
-        length: function length() {
-            return _length(_n);
-        },
-        area: function area() {
-            return _area(_n);
-        },
-
-        // MUTATORS
+        // Mutators
         _sadd: function _sadd(s) {
             _n = _sadd2(_n, s);
             return ops;
@@ -169,6 +163,40 @@ var _complex = exports._complex = {
             return ops;
         },
 
+        re: function re() {
+            return _r(_n);
+        },
+        im: function im() {
+            return _i(_n);
+        },
+
+        value: function value() {
+            return [_r(_n), _i(_n)];
+        },
+        type: function type() {
+            return _type();
+        },
+        angle: function angle() {
+            return _angle(_r(_n), _i(_n));
+        },
+
+        // Make a new complex number,
+        // use this if you want to chain without mutation
+        clone: function clone() {
+            return complex(_r(_n), _i(_n));
+        },
+
+        // return scalars, NO CHAINING
+        sqrLength: function sqrLength() {
+            return _sqrLength(_n);
+        },
+        length: function length() {
+            return _length(_n);
+        },
+        area: function area() {
+            return _area(_n);
+        },
+
         // These won't mutate
         sadd: function sadd(s) {
             return ops.clone()._sadd(s);
@@ -182,6 +210,7 @@ var _complex = exports._complex = {
         sdivide: function sdivide(s) {
             return ops.clone()._sdivide(s);
         },
+
         iadd: function iadd(i) {
             return ops.clone()._iadd(i);
         },
@@ -194,6 +223,7 @@ var _complex = exports._complex = {
         idivide: function idivide(i) {
             return ops.clone()._idivide(i);
         },
+
         conjugate: function conjugate() {
             return ops.clone()._conjugate();
         },

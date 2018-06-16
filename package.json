@@ -2,19 +2,22 @@
   "name": "gd_complex",
   "version": "0.0.2",
   "description": "Complex Number Arithmetic",
-  "main": "complex.js",
+  "main": "gd_complex.js",
   "watch": {
-    "start": "{index,gd_complex}.js"
+    "start": "{index,gd_complex}.js",
+    "test": "test/complex.js"
   },
   "scripts": {
     "build": "babel gd_complex.js -o gd_complex.es5.js",
+    "watch": "npm-watch",
     "start": "npm run build && node index.js",
-    "watch": "npm-watch"
+    "test": "mocha"
   },
   "keywords": [
     "Complex",
     "Imaginary",
-    "Numbers"
+    "Numbers",
+    "Math"
   ],
   "author": "Giovanni DiFeterici <gdifeterici@gmail.com>",
   "license": "ISC",
