@@ -1,6 +1,6 @@
 {
   "name": "gd_complex",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Complex Number Arithmetic",
   "main": "gd_complex.js",
   "watch": {
