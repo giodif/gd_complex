@@ -2,11 +2,13 @@
 
 ## Import
 
-```
+```javascript
+
 // ES6
 import complex from "gd_complex"
 // or ES5
 var complex = require("../gd_complex.es5").complex;
+
 ```
 
 ## Create
